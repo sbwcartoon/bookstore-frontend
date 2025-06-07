@@ -1,6 +1,6 @@
-import type {Book} from "$lib/types/book";
 import {redirect} from "@sveltejs/kit";
 import {httpStatus} from "$lib/status";
+import type {BookDetail} from "$lib/types/BookDetail";
 
 export const load = async ({params}) => {
   const id = params.id;
@@ -10,6 +10,6 @@ export const load = async ({params}) => {
     throw redirect(httpStatus.TEMPORARY_REDIRECT, "/books");
   }
 
-  const book: Book = await response.json();
+  const book: BookDetail = await response.json();
   return {book};
 };

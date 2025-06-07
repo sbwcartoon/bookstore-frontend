@@ -1,13 +1,13 @@
 <script lang="ts">
   import {goto} from "$app/navigation";
-  import type {Book} from "$lib/types/book";
   import {isNotBlank, isPositiveNaturalNumber} from "$lib/util/validation";
   import {ValidationError} from "$lib/exception/ValidationError";
   import {httpStatus} from "$lib/status";
   import {HttpError} from "$lib/exception/HttpError";
+  import type {BookDetail} from "$lib/types/BookDetail";
 
   const {data} = $props();
-  const book: Book = $state(data.book);
+  const book: BookDetail = $state(data.book);
 
   let titleValid = $derived(() => isNotBlank(book.title));
   let authorValid = $derived(() => isNotBlank(book.author));

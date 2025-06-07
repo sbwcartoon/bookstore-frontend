@@ -1,8 +1,8 @@
 import {deleteBook} from "$lib/testdata";
-import type {Book} from "$lib/types/book";
+import type {BookDetail} from "$lib/types/BookDetail";
 
 export async function PUT({request}: { request: Request }) {
-  const book: Book = await request.json();
+  const book: BookDetail = await request.json();
   return await fetch(`http://localhost:8080/api/books/${book.id}`, {
     method: "PUT",
     headers: {
