@@ -1,4 +1,3 @@
-import {deleteBook} from "$lib/testdata";
 import type {BookDetail} from "$lib/types/BookDetail";
 
 export async function PUT({request}: { request: Request }) {
@@ -13,6 +12,7 @@ export async function PUT({request}: { request: Request }) {
 }
 
 export async function DELETE({params}: { params: { id: string } }) {
-  deleteBook(params.id);
-  return new Response();
+  return await fetch(`http://localhost:8080/api/books/${params.id}`, {
+    method: "DELETE",
+  });
 }
