@@ -31,6 +31,12 @@
   export function goToPage(page: number) {
     goto(`/books?${buildQuery(page)}`);
   }
+
+  const paginationMaxVisible = 10;
+  const half = $derived(Math.floor(paginationMaxVisible / 2));
+  const start = $derived(Math.max(1, Math.min(data.page - half, data.totalPages - paginationMaxVisible + 1)));
+  const end = $derived(Math.min(data.totalPages, start + paginationMaxVisible - 1));
+  const pages: number[] = $derived(Array.from({length: end - start + 1}, (_, i) => start + i));
 </script>
 
 <h1 class="text-2xl font-bold mb-4">📚 책 목록 - 페이지 {data.page}</h1>
@@ -65,21 +71,25 @@
   {/each}
 </ul>
 
-<div class="flex justify-center space-x-2">
+<div class="flex justify-center space-x-1 mt-4">
   {#if data.page > 1}
-    <a href="?{buildQuery(data.page - 1)}" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">← 이전</a>
+    <a href="?{buildQuery(1)}" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">« 처음</a>
+    <a href="?{buildQuery(data.page - 1)}" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">‹ 이전</a>
   {/if}
 
-  {#each Array(data.totalPages) as _, i}
+  {#each pages as p}
     <a
-      href="?{buildQuery(i + 1)}"
-      class={`px-3 py-1 rounded ${data.page === i + 1 ? "bg-blue-500 text-white" : "bg-gray-100 hover:bg-gray-200"}`}
+      href="?{buildQuery(p)}"
+      class={`px-3 py-1 rounded text-sm ${
+        data.page === p ? "bg-blue-500 text-white" : "bg-gray-100 hover:bg-gray-200"
+      }`}
     >
-      {i + 1}
+      {p}
     </a>
   {/each}
 
   {#if data.page < data.totalPages}
-    <a href="?{buildQuery(data.page + 1)}" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">다음 →</a>
+    <a href="?{buildQuery(data.page + 1)}" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">다음 ›</a>
+    <a href="?{buildQuery(data.totalPages)}" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">끝 »</a>
   {/if}
 </div>
