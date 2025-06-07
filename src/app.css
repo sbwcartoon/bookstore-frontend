@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+html {
+  background-color: lightgray;
+}
+
+button {
+  cursor: pointer;
+}
