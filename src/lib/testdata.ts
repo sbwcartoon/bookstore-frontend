@@ -30,11 +30,6 @@ export function getBookById(id: string) {
   return books.find((book) => book.id === id);
 }
 
-export function addBook(book: Omit<Book, "id">) {
-  const newBook = { ...book, id: crypto.randomUUID() };
-  books.push(newBook);
-}
-
 export function updateBook(updated: Book) {
   const index = books.findIndex((book) => book.id === updated.id);
   if (index !== -1) {

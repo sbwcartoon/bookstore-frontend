@@ -1,7 +1,9 @@
-import {addBook} from "$lib/testdata";
-
 export async function POST({request}: { request: Request }) {
-  const book = await request.json();
-  addBook(book);
-  return new Response();
+  return await fetch("http://localhost:8080/api/books", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(await request.json()),
+  });
 }
