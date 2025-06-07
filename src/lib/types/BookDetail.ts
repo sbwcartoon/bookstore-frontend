@@ -1,5 +1,5 @@
-import type {Book} from "$lib/types/book";
+import type {Book} from "$lib/types/Book";
 
-export type BookDetail = Omit<Book, "id"> & {
+export interface BookDetail extends Book {
   id: string;
 }

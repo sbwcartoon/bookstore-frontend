@@ -1,6 +1,6 @@
 <script lang="ts">
   import {goto} from "$app/navigation";
-  import type {Book} from "$lib/types/book";
+  import type {Book} from "$lib/types/Book";
   import {isNotBlank, isPositiveNaturalNumber} from "$lib/util/validation";
   import {ValidationError} from "$lib/exception/ValidationError";
   import {HttpError} from "$lib/exception/HttpError";

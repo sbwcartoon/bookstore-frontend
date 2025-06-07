@@ -1,5 +1,5 @@
-import type {Book} from "$lib/types/book";
+import type {Book} from "$lib/types/Book";
 
-export type BookSummary = Omit<Book, "id" | "price"> & {
+export type BookSummary = Omit<Book, "price"> & {
   id: string;
 }
