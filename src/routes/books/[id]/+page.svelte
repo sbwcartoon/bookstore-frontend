@@ -9,15 +9,15 @@
   const {data} = $props();
   const book: BookDetail = $state(data.book);
 
-  let titleValid = $derived(() => isNotBlank(book.title));
-  let authorValid = $derived(() => isNotBlank(book.author));
-  let priceValid = $derived(() => isPositiveNaturalNumber(book.price));
-  let quantityValid = $derived(() => isPositiveNaturalNumber(book.quantity));
-  let bookValid = $derived(() => titleValid() && authorValid() && priceValid() && quantityValid());
+  let titleValid = $derived(isNotBlank(book.title));
+  let authorValid = $derived(isNotBlank(book.author));
+  let priceValid = $derived(isPositiveNaturalNumber(book.price));
+  let quantityValid = $derived(isPositiveNaturalNumber(book.quantity));
+  let bookValid = $derived(titleValid && authorValid && priceValid && quantityValid);
 
   async function handleUpdate(e: Event) {
     e.preventDefault();
-    if (!bookValid()) {
+    if (!bookValid) {
       alert("입력 정보를 확인해주세요.");
       throw new ValidationError();
     }
