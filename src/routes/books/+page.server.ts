@@ -1,5 +1,6 @@
 import type {PageResponse} from "$lib/types/PageResponse";
 import type {BookSummary} from "$lib/types/BookSummary";
+import {PUBLIC_API_HOST_URL} from "$env/static/public";
 
 export const load = async ({url}) => {
   const page = Number(url.searchParams.get("page") ?? "1");
@@ -13,7 +14,7 @@ export const load = async ({url}) => {
   title && params.searchParams.set("title", title);
   author && params.searchParams.set("author", author);
 
-  const response = await fetch(`http://localhost:8080/api/books${params.search}`);
+  const response = await fetch(`${PUBLIC_API_HOST_URL}/api/books${params.search}`);
 
   const pageResponse: PageResponse = await response.json();
   const books: BookSummary[] = pageResponse.content;
