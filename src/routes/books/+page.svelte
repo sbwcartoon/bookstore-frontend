@@ -39,57 +39,53 @@
   const pages: number[] = $derived(Array.from({length: end - start + 1}, (_, i) => start + i));
 </script>
 
-<h1 class="text-2xl font-bold mb-4">📚 책 목록 - 페이지 {data.page}</h1>
+<div class="flex flex-col gap-6">
+  <div class="flex justify-center items-center gap-5 w-full">
+    <a href="/books/new" class="flex justify-center items-center whitespace-nowrap bg-blue-500 text-white px-4 py-2 rounded">+ 새 책 추가</a>
 
-<a href="/books/new" class="text-blue-500 underline mb-4 inline-block">+ 새 책 추가</a>
-
-<form onsubmit={applyFilters} class="flex gap-4 items-center">
-  <div>
-    <label class="block text-sm">
-      제목
-      <input type="text" bind:value={title} class="input input-bordered w-full"/>
-    </label>
+    <form onsubmit={applyFilters} class="w-full">
+      <div class="flex justify-center items-center gap-1.5">
+        <input type="text" bind:value={title} class="form-input w-full" placeholder="제목"/>
+        <input type="text" bind:value={author} class="form-input w-full" placeholder="저자"/>
+        <button type="submit" class="px-10 py-2 whitespace-nowrap bg-black hover:bg-gray-900 text-white rounded">검색</button>
+      </div>
+    </form>
   </div>
+
   <div>
-    <label class="block text-sm">
-      저자
-      <input type="text" bind:value={author} class="input input-bordered w-full"/>
-    </label>
+    <ul class="space-y-2">
+      {#each data.books as book (book.id)}
+        <li class="p-4 bg-white shadow rounded">
+          <a href={`/books/${book.id}`}>
+            <div class="font-semibold">{book.title}</div>
+            <div class="text-sm text-gray-600">{book.author}</div>
+            <div class="text-sm text-gray-600">{book.quantity} 권</div>
+          </a>
+        </li>
+      {/each}
+    </ul>
+
+    <div class="flex justify-center space-x-1 p-8">
+      {#if data.page > 1}
+        <a href="?{buildQuery(1)}" class="flex justify-center items-center px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">«</a>
+        <a href="?{buildQuery(data.page - 1)}" class="flex justify-center items-center px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">‹</a>
+      {/if}
+
+      {#each pages as p}
+        <a
+          href="?{buildQuery(p)}"
+          class={`flex justify-center items-center px-3 py-1 rounded text-sm ${
+            data.page === p ? "bg-blue-500 text-white" : "bg-gray-100 hover:bg-gray-200"
+          }`}
+        >
+          {p}
+        </a>
+      {/each}
+
+      {#if data.page < data.totalPages}
+        <a href="?{buildQuery(data.page + 1)}" class="flex justify-center items-center px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">›</a>
+        <a href="?{buildQuery(data.totalPages)}" class="flex justify-center items-center px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">»</a>
+      {/if}
+    </div>
   </div>
-  <button type="submit" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">검색</button>
-</form>
-
-<ul class="space-y-2">
-  {#each data.books as book (book.id)}
-    <li class="p-4 bg-white shadow rounded">
-      <a href={`/books/${book.id}`}>
-        <div class="font-semibold">{book.title}</div>
-        <div class="text-sm text-gray-600">{book.author}</div>
-        <div class="text-sm text-gray-600">{book.quantity}</div>
-      </a>
-    </li>
-  {/each}
-</ul>
-
-<div class="flex justify-center space-x-1 mt-4">
-  {#if data.page > 1}
-    <a href="?{buildQuery(1)}" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">« 처음</a>
-    <a href="?{buildQuery(data.page - 1)}" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">‹ 이전</a>
-  {/if}
-
-  {#each pages as p}
-    <a
-      href="?{buildQuery(p)}"
-      class={`px-3 py-1 rounded text-sm ${
-        data.page === p ? "bg-blue-500 text-white" : "bg-gray-100 hover:bg-gray-200"
-      }`}
-    >
-      {p}
-    </a>
-  {/each}
-
-  {#if data.page < data.totalPages}
-    <a href="?{buildQuery(data.page + 1)}" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">다음 ›</a>
-    <a href="?{buildQuery(data.totalPages)}" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">끝 »</a>
-  {/if}
 </div>

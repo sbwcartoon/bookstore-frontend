@@ -72,23 +72,54 @@
   }
 </script>
 
-<h1 class="text-xl font-bold mb-4">✏️ 책 상세 정보</h1>
+<h1 class="text-xl font-bold mb-4">✏️  책 상세 정보</h1>
 
-<form onsubmit={handleUpdate} class="space-y-4">
-  <input bind:value={book.title} placeholder="제목" class="form-input w-full" required pattern=".*\S.*" title="이 입력란을 작성하세요."/>
-  <input bind:value={book.author} placeholder="저자" class="form-input w-full" required pattern=".*\S.*" title="이 입력란을 작성하세요."/>
-  <input type="number" bind:value={book.price} min="0" step="1" placeholder="가격" class="form-input w-full" required pattern=".*\S.*" title="이 입력란을 작성하세요."/>
-  <input type="number" bind:value={book.quantity} min="0" step="1" placeholder="수량" class="form-input w-full" required pattern=".*\S.*" title="이 입력란을 작성하세요."/>
-  <button type="button"><a href="/books" class="bg-gray-500 text-white px-4 py-2 rounded">목록으로</a></button>
-  <button
-    type="button"
-    class="bg-red-400 text-white px-4 py-2 rounded"
-    onclick={handleDelete}
-  >삭제
-  </button>
-  <button
-    type="submit"
-    class="bg-green-500 text-white px-4 py-2 rounded"
-  >수정
-  </button>
+<form onsubmit={handleUpdate} class="space-y-10">
+  <div class="space-y-4">
+    <label class="block">
+      제목
+      <input bind:value={book.title} placeholder="한 글자 이상 입력하세요." class="form-input w-full" required pattern=".*\S.*"
+             title="이 입력란을 작성하세요."/>
+    </label>
+
+    <label class="block">
+      저자
+      <input bind:value={book.author} placeholder="한 글자 이상 입력하세요." class="form-input w-full" required pattern=".*\S.*"
+             title="이 입력란을 작성하세요."/>
+    </label>
+
+    <label class="block">
+      가격
+      <input type="number" bind:value={book.price} min="0" step="1" placeholder="0 이상 입력하세요." class="form-input w-full"
+             required pattern=".*\S.*" title="이 입력란을 작성하세요."/>
+    </label>
+
+    <label class="block">
+      수량
+      <input type="number" bind:value={book.quantity} min="0" step="1" placeholder="0 이상 입력하세요."
+             class="form-input w-full" required pattern=".*\S.*" title="이 입력란을 작성하세요."/>
+    </label>
+  </div>
+
+  <div class="flex justify-between items-center">
+    <button
+      type="button"
+      class="bg-gray-500 text-white px-4 py-2 rounded"
+    >
+      <a href="/books">목록으로</a>
+    </button>
+    <div class="space-x-2">
+      <button
+        type="button"
+        class="bg-red-400 text-white px-4 py-2 rounded"
+        onclick={handleDelete}
+      >삭제
+      </button>
+      <button
+        type="submit"
+        class="bg-green-500 text-white px-4 py-2 rounded"
+      >수정
+      </button>
+    </div>
+  </div>
 </form>
