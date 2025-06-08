@@ -51,7 +51,7 @@
 
   <div class="flex justify-between items-center">
     <GoToListPageButton/>
-    <div class="space-x-2">
+    <div class="flex justify-between items-center space-x-2">
       <DeleteBookButton bookId={book.id}/>
       <GreenSubmitButton>수정</GreenSubmitButton>
     </div>
