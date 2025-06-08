@@ -1,5 +1,11 @@
-<script>
-  const {mark, params} = $props();
+<script lang="ts">
+  const {
+    mark,
+    params,
+  }: {
+    mark: number | string,
+    params: string,
+  } = $props();
 </script>
 
 <a href="?{params}"

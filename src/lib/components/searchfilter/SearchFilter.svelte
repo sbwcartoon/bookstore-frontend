@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
   let {
-    title = $bindable(),
-    author = $bindable(),
+    title = $bindable<string>(),
+    author = $bindable<string>(),
   } = $props();
 </script>
 

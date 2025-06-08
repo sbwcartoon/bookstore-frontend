@@ -1,5 +1,8 @@
-<script>
-  const {book = $bindable()} = $props();
+<script lang="ts">
+  import type {Book} from "$lib/types/Book";
+  import type {BookDetail} from "$lib/types/BookDetail";
+
+  const {book = $bindable<Book | BookDetail>()} = $props();
 </script>
 
 <div class="space-y-4">

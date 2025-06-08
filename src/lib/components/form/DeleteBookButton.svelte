@@ -4,7 +4,7 @@
   import {goto} from "$app/navigation";
   import RedClickButton from "$lib/components/button/RedClickButton.svelte";
 
-  const {bookId} = $props();
+  const {bookId}: { bookId: string } = $props();
 
   async function handleDelete(e: Event) {
     e.preventDefault();

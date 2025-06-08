@@ -1,5 +1,7 @@
-<script>
-  const {book} = $props();
+<script lang="ts">
+  import type {BookSummary} from "$lib/types/BookSummary";
+
+  const {book}: { book: BookSummary } = $props();
 </script>
 
 <li class="p-4 bg-white shadow rounded">

@@ -1,8 +1,17 @@
-<script>
+<script lang="ts">
   import PageMoveButton from "$lib/components/pagination/PageMoveButton.svelte";
   import PageNumberButton from "$lib/components/pagination/PageNumberButton.svelte";
 
-  const {data, buildQuery} = $props();
+  const {
+    data,
+    buildQuery,
+  }: {
+    data: {
+      page: number,
+      totalPages: number,
+    },
+    buildQuery: (page: number) => string,
+  } = $props();
 
   const paginationMaxVisible = 10;
   const half = $derived(Math.floor(paginationMaxVisible / 2));

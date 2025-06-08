@@ -17,11 +17,11 @@
     quantity: 0,
   });
 
-  let titleValid = $derived(isNotBlank(book.title));
-  let authorValid = $derived(isNotBlank(book.author));
-  let priceValid = $derived(isPositiveNaturalNumber(book.price));
-  let quantityValid = $derived(isPositiveNaturalNumber(book.quantity));
-  let bookValid = $derived(titleValid && authorValid && priceValid && quantityValid);
+  const titleValid = $derived(isNotBlank(book.title));
+  const authorValid = $derived(isNotBlank(book.author));
+  const priceValid = $derived(isPositiveNaturalNumber(book.price));
+  const quantityValid = $derived(isPositiveNaturalNumber(book.quantity));
+  const bookValid = $derived(titleValid && authorValid && priceValid && quantityValid);
 
   async function handleSubmit(e: Event) {
     e.preventDefault();

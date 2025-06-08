@@ -1,11 +1,12 @@
-<script>
-  import BookSummary from "$lib/components/summary/BookSummary.svelte";
+<script lang="ts">
+  import BookSummaryItem from "$lib/components/summary/BookSummaryItem.svelte";
+  import type {BookSummary} from "$lib/types/BookSummary";
 
-  const {data} = $props();
+  const {data}: { data: { books: BookSummary[] } } = $props();
 </script>
 
 <ul class="space-y-2">
   {#each data.books as book (book.id)}
-    <BookSummary {book} />
+    <BookSummaryItem {book}/>
   {/each}
 </ul>

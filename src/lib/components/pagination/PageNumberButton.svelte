@@ -1,5 +1,13 @@
-<script>
-  const {value, params, selected} = $props();
+<script lang="ts">
+  const {
+    value,
+    params,
+    selected,
+  }: {
+    value: number,
+    params: string,
+    selected: boolean,
+  } = $props();
 </script>
 
 <a
