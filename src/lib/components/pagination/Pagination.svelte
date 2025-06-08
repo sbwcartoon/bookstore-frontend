@@ -26,7 +26,7 @@
     <PageMoveButton mark="‹" params={buildQuery(data.page - 1)}/>
   {/if}
 
-  {#each pages as p}
+  {#each pages as p (p)}
     <PageNumberButton
       value={p}
       params={buildQuery(p)}
