@@ -13,7 +13,7 @@
     - docker compose 설치 참조: https://docs.docker.com/compose/install
 
 ### 설치
-- 백엔드 앱을 나중에 설치해도 무방하나, 정상 설치되더라도 DB 연결이 되지 않으므로 기능은 사용할 수 없는 상태임. 백엔드 앱을 설치하면 정상 작동함
+- 백엔드 앱을 나중에 설치해도 무방하나, 본 앱을 정상 설치하더라도 백엔드의 DB와는 연결이 되지 않는 상태이므로 기능은 사용할 수 없음. 백엔드 앱을 설치하면 정상 작동함
 ```shell
 ### 설치 파일을 실행할 때 백엔드 앱이 설치된 주소를 함께 사용(아래 예시의 http://api-host-url 부분)
 $ sh start.sh http://api-host-url
@@ -22,7 +22,7 @@ $ sh start.sh http://api-host-url
   - ports 항목의 "3000:3000" 중 앞 숫자를 바꾸고 싶은 포트로 변경한 후 다시 시도(ex. 3333으로 변경할 경우 "3333:3000")
 
 ### 설치 완료 확인
-- 아래 명령어를 실행하여 구동중인 컨테이너가 rgt-bookstore-frontend가 있으면 설치 완료됨
+- 아래 명령어를 실행하여 구동중인 컨테이너 중 rgt-bookstore-frontend가 있으면 설치 완료됨
 ```shell
 $ docker ps --filter "name=rgt-bookstore-frontend"
 ```
