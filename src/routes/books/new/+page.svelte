@@ -27,6 +27,9 @@
     }
     const response = await fetch("/api/books", {
       method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(book),
     });
 
