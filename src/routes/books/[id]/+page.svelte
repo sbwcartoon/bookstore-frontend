@@ -8,6 +8,7 @@
   import GreenSubmitButton from "$lib/components/button/GreenSubmitButton.svelte";
   import DeleteBookButton from "$lib/components/form/DeleteBookButton.svelte";
   import GoToListPageButton from "$lib/components/form/GoToListPageButton.svelte";
+  import PageTitle from "$lib/components/layout/PageTitle.svelte";
 
   const {data} = $props();
   let book: BookDetail = $state(data.book);
@@ -56,7 +57,7 @@
   }
 </script>
 
-<h1 class="text-xl font-bold mb-4">✏️  책 상세 정보</h1>
+<PageTitle>✏️ 책 상세 정보</PageTitle>
 
 <form onsubmit={handleUpdate} class="space-y-10">
   <BookInputForm bind:book/>

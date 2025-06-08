@@ -8,6 +8,7 @@
   import BookInputForm from "$lib/components/form/BookInputForm.svelte";
   import BlueSubmitButton from "$lib/components/button/BlueSubmitButton.svelte";
   import GoToListPageButton from "$lib/components/form/GoToListPageButton.svelte";
+  import PageTitle from "$lib/components/layout/PageTitle.svelte";
 
   let book: Book = $state({
     title: "",
@@ -56,7 +57,7 @@
   }
 </script>
 
-<h1 class="text-xl font-bold mb-4">📖 새 책 추가</h1>
+<PageTitle>📖 새 책 추가</PageTitle>
 
 <form onsubmit={handleSubmit} class="space-y-10">
   <BookInputForm bind:book/>
