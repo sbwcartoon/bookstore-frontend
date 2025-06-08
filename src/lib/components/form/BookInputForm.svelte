@@ -1,32 +1,33 @@
 <script lang="ts">
   import type {Book} from "$lib/types/Book";
   import type {BookDetail} from "$lib/types/BookDetail";
+  import NumberInputForm from "$lib/components/form/NumberInputForm.svelte";
+  import TextInputForm from "$lib/components/form/TextInputForm.svelte";
 
   const {book = $bindable<Book | BookDetail>()} = $props();
+
+  let title = $state(book.title);
+  let author = $state(book.author);
+  let price = $state(book.price);
+  let quantity = $state(book.quantity);
+
+  $effect(() => {
+    book.title = title;
+  });
+  $effect(() => {
+    book.author = author;
+  });
+  $effect(() => {
+    book.price = price;
+  });
+  $effect(() => {
+    book.quantity = quantity;
+  });
 </script>
 
 <div class="space-y-4">
-  <label class="block">
-    제목
-    <input bind:value={book.title} placeholder="한 글자 이상 입력하세요." class="form-input w-full" required pattern=".*\S.*"
-           title="이 입력란을 작성하세요."/>
-  </label>
-
-  <label class="block">
-    저자
-    <input bind:value={book.author} placeholder="한 글자 이상 입력하세요." class="form-input w-full" required pattern=".*\S.*"
-           title="이 입력란을 작성하세요."/>
-  </label>
-
-  <label class="block">
-    가격
-    <input type="number" bind:value={book.price} min="0" step="1" placeholder="0 이상 입력하세요." class="form-input w-full"
-           required pattern=".*\S.*" title="이 입력란을 작성하세요."/>
-  </label>
-
-  <label class="block">
-    수량
-    <input type="number" bind:value={book.quantity} min="0" step="1" placeholder="0 이상 입력하세요."
-           class="form-input w-full" required pattern=".*\S.*" title="이 입력란을 작성하세요."/>
-  </label>
+  <TextInputForm bind:value={title}>제목</TextInputForm>
+  <TextInputForm bind:value={author}>저자</TextInputForm>
+  <NumberInputForm bind:value={price}>가격</NumberInputForm>
+  <NumberInputForm bind:value={quantity}>수량</NumberInputForm>
 </div>
