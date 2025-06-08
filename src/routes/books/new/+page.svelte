@@ -6,6 +6,8 @@
   import {HttpError} from "$lib/exception/HttpError";
   import {httpStatus} from "$lib/status";
   import BookInputForm from "$lib/components/form/BookInputForm.svelte";
+  import BlueSubmitButton from "$lib/components/button/BlueSubmitButton.svelte";
+  import GoToListPageButton from "$lib/components/form/GoToListPageButton.svelte";
 
   let book: Book = $state({
     title: "",
@@ -60,17 +62,7 @@
   <BookInputForm bind:book/>
 
   <div class="flex justify-between items-center">
-    <button
-      type="button"
-      class="bg-gray-500 text-white px-4 py-2 rounded"
-    >
-      <a href="/books">목록으로</a>
-    </button>
-    <button
-      type="submit"
-      class="bg-blue-500 text-white px-4 py-2 rounded"
-    >
-      저장
-    </button>
+    <GoToListPageButton/>
+    <BlueSubmitButton>저장</BlueSubmitButton>
   </div>
 </form>

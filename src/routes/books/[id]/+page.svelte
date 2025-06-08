@@ -1,11 +1,13 @@
 <script lang="ts">
-  import {goto} from "$app/navigation";
   import {isNotBlank, isPositiveNaturalNumber} from "$lib/util/validation";
   import {ValidationError} from "$lib/exception/ValidationError";
   import {httpStatus} from "$lib/status";
   import {HttpError} from "$lib/exception/HttpError";
   import type {BookDetail} from "$lib/types/BookDetail";
   import BookInputForm from "$lib/components/form/BookInputForm.svelte";
+  import GreenSubmitButton from "$lib/components/button/GreenSubmitButton.svelte";
+  import DeleteBookButton from "$lib/components/form/DeleteBookButton.svelte";
+  import GoToListPageButton from "$lib/components/form/GoToListPageButton.svelte";
 
   const {data} = $props();
   let book: BookDetail = $state(data.book);
@@ -52,28 +54,6 @@
 
     alert("수정되었습니다.");
   }
-
-  async function handleDelete(e: Event) {
-    e.preventDefault();
-    if (confirm("삭제하시겠습니까?")) {
-      const response = await fetch(`/api/books/${book.id}`, {
-        method: "delete",
-      });
-
-      if (!response.ok) {
-        if (response.status === httpStatus.NOT_FOUND) {
-          alert("책이 존재하지 않습니다. 저장된 책을 삭제해 주세요.");
-          throw await HttpError.fromResponse(response);
-        }
-
-        alert("오류가 발생했습니다. 잠시 후 다시 시도해 주세요.\n문제가 지속될 경우 관리자에게 문의해 주세요.");
-        throw await HttpError.fromResponse(response);
-      }
-
-      alert("삭제되었습니다.");
-      await goto("/books");
-    }
-  }
 </script>
 
 <h1 class="text-xl font-bold mb-4">✏️  책 상세 정보</h1>
@@ -82,24 +62,10 @@
   <BookInputForm bind:book/>
 
   <div class="flex justify-between items-center">
-    <button
-      type="button"
-      class="bg-gray-500 text-white px-4 py-2 rounded"
-    >
-      <a href="/books">목록으로</a>
-    </button>
+    <GoToListPageButton/>
     <div class="space-x-2">
-      <button
-        type="button"
-        class="bg-red-400 text-white px-4 py-2 rounded"
-        onclick={handleDelete}
-      >삭제
-      </button>
-      <button
-        type="submit"
-        class="bg-green-500 text-white px-4 py-2 rounded"
-      >수정
-      </button>
+      <DeleteBookButton bookId={book.id}/>
+      <GreenSubmitButton>수정</GreenSubmitButton>
     </div>
   </div>
 </form>

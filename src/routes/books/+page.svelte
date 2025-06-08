@@ -4,6 +4,7 @@
   import Pagination from "$lib/components/pagination/Pagination.svelte";
   import BookSummaries from "$lib/components/summary/BookSummaries.svelte";
   import SearchFilter from "$lib/components/searchfilter/SearchFilter.svelte";
+  import BlueGoToPageButton from "$lib/components/button/BlueGoToPageButton.svelte";
 
   const {data} = $props();
 
@@ -38,8 +39,8 @@
 
 <div class="flex flex-col gap-6">
   <div class="flex justify-center items-center gap-5 w-full">
-    <a href="/books/new"
-       class="flex justify-center items-center whitespace-nowrap bg-blue-500 text-white px-4 py-2 rounded">+ 새 책 추가</a>
+
+    <BlueGoToPageButton href="/books/new">+ 새 책 추가</BlueGoToPageButton>
 
     <form onsubmit={applyFilters} class="w-full">
       <SearchFilter
