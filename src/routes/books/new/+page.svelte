@@ -5,8 +5,9 @@
   import {ValidationError} from "$lib/exception/ValidationError";
   import {HttpError} from "$lib/exception/HttpError";
   import {httpStatus} from "$lib/status";
+  import BookInputForm from "$lib/components/form/BookInputForm.svelte";
 
-  const book: Book = $state({
+  let book: Book = $state({
     title: "",
     author: "",
     price: 0,
@@ -56,31 +57,7 @@
 <h1 class="text-xl font-bold mb-4">📖 새 책 추가</h1>
 
 <form onsubmit={handleSubmit} class="space-y-10">
-  <div class="space-y-4">
-    <label class="block">
-      제목
-      <input bind:value={book.title} placeholder="한 글자 이상 입력하세요." class="form-input w-full" required pattern=".*\S.*"
-             title="이 입력란을 작성하세요."/>
-    </label>
-
-    <label class="block">
-      저자
-      <input bind:value={book.author} placeholder="한 글자 이상 입력하세요." class="form-input w-full" required pattern=".*\S.*"
-             title="이 입력란을 작성하세요."/>
-    </label>
-
-    <label class="block">
-      가격
-      <input type="number" bind:value={book.price} min="0" step="1" placeholder="0 이상 입력하세요." class="form-input w-full"
-             required pattern=".*\S.*" title="이 입력란을 작성하세요."/>
-    </label>
-
-    <label class="block">
-      수량
-      <input type="number" bind:value={book.quantity} min="0" step="1" placeholder="0 이상 입력하세요."
-             class="form-input w-full" required pattern=".*\S.*" title="이 입력란을 작성하세요."/>
-    </label>
-  </div>
+  <BookInputForm bind:book/>
 
   <div class="flex justify-between items-center">
     <button
