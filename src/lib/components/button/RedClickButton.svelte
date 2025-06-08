@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Button from "$lib/components/button/Button.svelte";
+
   const {
     clickHandler,
     children,
@@ -8,10 +10,8 @@
   } = $props();
 </script>
 
-<button
+<Button
   type="button"
-  class="bg-red-400 text-white px-4 py-2 rounded"
+  classes="bg-red-400 text-white"
   onclick={clickHandler}
->
-  {@render children()}
-</button>
+>{@render children()}</Button>

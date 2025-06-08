@@ -1,9 +1,10 @@
 <script lang="ts">
+  import Button from "$lib/components/button/Button.svelte";
+
   const {children}: { children: () => any } = $props();
 </script>
-<button
+
+<Button
   type="submit"
-  class="bg-blue-500 text-white px-4 py-2 rounded"
->
-  {@render children()}
-</button>
+  classes="bg-blue-500 text-white"
+>{@render children()}</Button>

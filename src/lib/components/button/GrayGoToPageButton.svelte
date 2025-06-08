@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Button from "$lib/components/button/Button.svelte";
+
   const {
     href,
     children,
@@ -8,11 +10,11 @@
   } = $props();
 </script>
 
-<button
+<Button
   type="button"
-  class="flex justify-center items-center whitespace-nowrap bg-gray-500 text-white px-4 py-2 rounded"
+  classes="bg-gray-500 text-white"
 >
   <a {href}>
     {@render children()}
   </a>
-</button>
+</Button>
