@@ -23,9 +23,9 @@ $ sh start.sh http://api-host-url
   - ports 항목의 "3000:3000" 중 앞 숫자를 바꾸고 싶은 포트로 변경한 후 다시 시도(ex. 3333으로 변경할 경우 "3333:3000")
 
 ### 설치 완료 확인
-- 아래 명령어를 실행하여 구동중인 컨테이너 중 rgt-bookstore-frontend가 있으면 설치 완료됨
+- 아래 명령어를 실행하여 구동중인 컨테이너 중 bookstore-frontend가 있으면 설치 완료됨
 ```shell
-$ docker ps --filter "name=rgt-bookstore-frontend"
+$ docker ps --filter "name=bookstore-frontend"
 ```
 - 다만 상기 명령어는 컨테이너가 설치된 것을 의미하며 이후 구동까지는 시간이 더 걸릴 수 있음
 

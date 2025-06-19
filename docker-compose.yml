@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   app:
-    container_name: rgt-bookstore-frontend
+    container_name: bookstore-frontend
     build:
       context: .
       args:
